@@ -25,10 +25,10 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 # also no actual installation will be performed
 # debug mode 1 will download to the directory the script is run in, but will not check the version
 # debug mode 2 will download to the temp directory, check for blocking processes, check the version, but will not install anything or remove the current version
-DEBUG=1
+DEBUG=0
 
 # notify behavior
-NOTIFY=success
+NOTIFY=silent
 # options:
 #   - success      notify the user on success
 #   - silent       no notifications
@@ -44,7 +44,7 @@ PROMPT_TIMEOUT=86400
 # 86400 = 24 hours (default)
 
 # behavior when blocking processes are found
-BLOCKING_PROCESS_ACTION=tell_user
+BLOCKING_PROCESS_ACTION=ignore
 # options:
 #   - ignore       continue even when blocking processes are found
 #   - quit         app will be told to quit nicely if running
@@ -81,7 +81,7 @@ BLOCKING_PROCESS_ACTION=tell_user
 
 
 # logo-icon used in dialog boxes if app is blocking
-LOGO=appstore
+LOGO=mosylem
 # options:
 #   - appstore      Icon is Apple App Store (default)
 #   - jamf          JAMF Pro
@@ -155,7 +155,7 @@ IGNORE_DND_APPS=""
 
 # This requires Swift Dialog 2.11.2 or higher.
 
-DIALOG_CMD_FILE=""
+DIALOG_CMD_FILE="/var/tmp/dialog.log"
 # When this variable is set, Installomator will write Swift Dialog commands to this path.
 # Installomator will not launch Swift Dialog. The process calling Installomator will have
 # launch and configure Swift Dialog to listen to this file.
@@ -7267,6 +7267,34 @@ zulujdk8)
     expectedTeamID="TDTHCUPYFR"
     appCustomVersion(){ if [ -f "/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Info.plist" ]; then /usr/bin/defaults read "/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Info.plist" "CFBundleName" | sed 's/Zulu //'; fi }
     appNewVersion=$(echo "$downloadURL" | cut -d "-" -f 1 | sed -e "s/.*zulu//") # Cannot be compared to anything
+    ;;
+flsecurebrowser12_5)
+    name="FLSecureBrowser"
+    type="dmg"
+    downloadURL="https://files.portal.cambiumast.com/florida/SecureBrowsers/SB2020/FLSecureBrowser12.5-2020-07-08-signed.dmg"
+    appNewVersion="12.5"
+    expectedTeamID="FRFWLA39JY"
+    ;;
+flsecurebrowser15)
+    name="FLSecureBrowser"
+    type="dmg"
+    downloadURL="https://sb.portal.cambiumast.com/geturls?clientName=florida&operatingSystem=macOS&browserVersion=15.0"
+    appNewVersion="15.0"
+    expectedTeamID="FRFWLA39JY"
+    ;;
+flsecurebrowser15_5)
+    name="FLSecureBrowser"
+    type="dmg"
+    downloadURL="https://sb.portal.cambiumast.com/geturls?clientName=florida&operatingSystem=macOS&browserVersion=15.5"
+    appNewVersion="15.5"
+    expectedTeamID="FRFWLA39JY"
+    ;;
+nweasecurebrowser)
+    name="NWEA Secure Testing Browser"
+    type="dmg"
+    downloadURL="https://teach.mapnwea.org/contents/partner/Lockdown%20Browser.dmg"
+    appNewVersion="5.5.2.3"
+    expectedTeamID="SRTXZJ7SQ3"
     ;;
 *)
     # unknown label
